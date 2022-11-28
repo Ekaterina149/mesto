@@ -1,0 +1,6 @@
+.footer {
+  padding: 67px 0 60px 200px;
+  /* Футер, не сжимайся */
+  flex-shrink: 0;
+  align-self: stretch;
+}

@@ -1,0 +1,10 @@
+.profile__info {
+  width: 336px;
+  height: 73px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22px 0 25px 30px;
+  position: relative;
+
+}
