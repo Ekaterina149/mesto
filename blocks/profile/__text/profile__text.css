@@ -8,3 +8,18 @@
   text-align: left;
   color: #FFFFFF;
 }
+
+
+
+
+@media screen and (max-width: 400px) {
+  .profile__text {
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+
+
+  }
+
+}
+

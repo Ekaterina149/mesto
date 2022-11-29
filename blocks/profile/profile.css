@@ -5,6 +5,34 @@
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
+  flex-wrap: wrap;
+  gap: 40px;
 
+}
+
+@media screen and (max-width: 1076px) {
+
+  .profile {
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+
+  .profile {
+    padding: 42px 19px 0;
+
+
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+
+  .profile {
+    flex-direction: column;
+    gap: 0;
+  }
 
 }
