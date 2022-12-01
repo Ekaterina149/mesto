@@ -7,6 +7,10 @@
   line-height: 22px;
   text-align: left;
   color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 336px;
 }
 
 
@@ -17,7 +21,7 @@
     text-align: center;
     font-size: 14px;
     line-height: 17px;
-
+    max-width: 282px;
 
   }
 

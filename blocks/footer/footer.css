@@ -4,3 +4,10 @@
   flex-shrink: 0;
   align-self: stretch;
 }
+
+@media screen and (max-width: 610px) {
+  .footer {
+    padding: 48px 19px 36px;
+  }
+
+}
