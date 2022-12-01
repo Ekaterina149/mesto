@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,6 @@
   <link rel="shortcut icon" href="./images/valenky.ico">
   <title>Место</title>
 </head>
-
 <body class="root">
   <div class="page">
     <header class="header">
@@ -20,15 +18,13 @@
       <section class="profile">
         <div class="profile__box">
           <img class="profile__avatar" src="./images/kusto.jpg" alt="Жак Ив Кусто">
-
           <div class="profile__info">
             <h1 class="profile__header">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button opacity"></button>
+            <button class="profile__edit-button opacity" type="button"></button>
             <p class="profile__text">Исследователь океана</p>
           </div>
         </div>
-
-        <button class="profile__add-button opacity">
+        <button class="profile__add-button opacity" type="button">
         </button>
       </section>
       <section class="elements">
@@ -86,26 +82,19 @@
           <button class="popup__close opacity" type="button"></button>
           <h2 class="popup__header">Редактировать профиль</h2>
           <fieldset class="popup__fieldset" id="fieldsetname">
-
             <input class="popup__input popup__input_type_name" type="text" id="NameInput" name="NameInput"
               placeholder="Имя">
             <input class="popup__input popup__input_type_job" type="text" id="JobInput" name="JobInput"
               placeholder="Деятельность">
-
-
           </fieldset>
           <button class="popup__submit opacity" type="submit">Сохранить</button>
-
-
         </form>
       </div>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-
   </div>
-  <script src="./scripts/script.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
-
 </html>
