@@ -20,81 +20,85 @@
           <img class="profile__avatar" src="./images/kusto.jpg" alt="Жак Ив Кусто">
           <div class="profile__info">
             <h1 class="profile__header">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button opacity" type="button"></button>
+            <button class="profile__edit-button opacity" type="button" aria-label="Редактировать" ></button>
             <p class="profile__text">Исследователь океана</p>
+
           </div>
         </div>
-        <button class="profile__add-button opacity" type="button">
+        <button class="profile__add-button opacity" type="button" aria-label="Добавить карточку">
         </button>
       </section>
       <section class="elements">
         <div class="element">
           <img class="element__image" src="./images/Karashaevo.jpg" alt="Карачаевск">
           <div class="element__capture">
-            <p class="element__text">Карачаевск</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Карачаевск</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/Mountain_Elbrus.png" alt="Гора Эльбрус">
           <div class="element__capture">
-            <p class="element__text">Гора Эльбрус</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/Moutain_Donbai.png" alt="Домбай">
           <div class="element__capture">
-            <p class="element__text">Домбай</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Домбай</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/pskov.jpg" alt="Псков">
           <div class="element__capture">
-            <p class="element__text">Псков</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Псков</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/sakhalin.jpg" alt="Сахалин">
           <div class="element__capture">
-            <p class="element__text">Сахалин</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Сахалин</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="./images/vorontsovskiy_dvorets.jpg" alt="Воронцовский дворец">
           <div class="element__capture">
-            <p class="element__text">Воронцовский дворец</p>
-            <button class="element__heart opacity" type="button">
+            <h2 class="element__text">Воронцовский дворец</h2>
+            <button class="element__heart" type="button">
             </button>
           </div>
         </div>
       </section>
-      <div class="popup">
-        <form class="popup__container" name="form" method="get">
-          <button class="popup__close opacity" type="button"></button>
-          <h2 class="popup__header">Редактировать профиль</h2>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close opacity" type="button"></button>
+        <h2 class="popup__header">Редактировать профиль</h2>
+        <form class="popup__form" name="form" method="get">
           <fieldset class="popup__fieldset" id="fieldsetname">
             <input class="popup__input popup__input_type_name" type="text" id="NameInput" name="NameInput"
               placeholder="Имя">
             <input class="popup__input popup__input_type_job" type="text" id="JobInput" name="JobInput"
               placeholder="Деятельность">
           </fieldset>
-          <button class="popup__submit opacity" type="submit">Сохранить</button>
+          <button class="popup__submit" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">© 2022 Mesto Russia</p>
-    </footer>
+    </div>
   </div>
+
   <script src="./scripts/index.js"></script>
 </body>
 </html>
