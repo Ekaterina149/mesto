@@ -10,8 +10,6 @@
   @media screen and (max-width: 980px) {
     .elements {
       max-width: 581px;
-      padding: 51px 0 0;
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, 1fr);
       }
@@ -21,7 +19,6 @@
   @media screen and (max-width: 620px) {
     .elements {
       padding: 36px 0 0;
-      display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: repeat(6, 1fr);
       column-gap: 20px;

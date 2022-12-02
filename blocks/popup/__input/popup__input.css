@@ -2,7 +2,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 8px;
-  margin-bottom: 25px;
+  margin-top: 25px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -14,8 +14,9 @@
   outline: none;
 }
 
-.popup__input:nth-child(2) {
-  margin-bottom: 0;
+.popup__input:first-child {
+  padding-bottom: 8px;
+  margin-top: 0;
 }
 
 

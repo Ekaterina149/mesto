@@ -10,6 +10,14 @@
   text-align: center;
   box-sizing: border-box;
   border-radius: 2px;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.popup__submit:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {
