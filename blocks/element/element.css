@@ -3,5 +3,5 @@
   grid-template-columns: 282px;
   grid-template-rows: 282px 79px;
   border-radius: 10px;
-
+  position: relative;
   }
