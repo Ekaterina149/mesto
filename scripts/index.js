@@ -3,9 +3,11 @@ let userJob = document.querySelector('.profile__text');
 let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_job');
 let editButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let closeButton = document.querySelector('.popup__close');
+let addButton = document.querySelector('.profile__add-button');
+let popup = document.querySelectorAll('.popup');
+let closeButton = document.querySelectorAll('.popup__close');
 let formElement = document.querySelector('.popup__container');
+const inputAdd = [{}];
 
 const cardElements = document.querySelector('.elements');
 //const templateElement = document.querySelector('#element').content;
@@ -38,16 +40,15 @@ const initialCards = [
   }
 ];
 
-function openPopup() {
+function openPopup(p) {
 
-  popup.classList.add('popup_opened');
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
+  p.classList.add('popup_opened');
+
 }
 
-function closePopup() {
+function closePopup(p) {
 
-  popup.classList.remove('popup_opened');
+  p.classList.remove('popup_opened');
 }
 
 function handleFormSubmit (evt) {
@@ -55,12 +56,42 @@ function handleFormSubmit (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  closePopup();
+  closeEditPopup(); 
 
 }
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-formElement.addEventListener('submit', handleFormSubmit);
+ function openEditPopup() {
+  openPopup(popup[0]);
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
+ }
+
+ function closeEditPopup() {
+  closePopup(popup[0]);
+ }
+
+ function openAddPopup() {
+  openPopup(popup[1]);
+  inputAdd.push({
+    name: nameInput.value,
+    link: jobInput.value
+   });
+   createElement(inputAdd);
+   console.log (inputAdd);
+
+ }
+ function closeAddPopup() {
+  closePopup(popup[1]);
+ }
+
+
+
+editButton.addEventListener('click', openEditPopup);
+closeButton[0].addEventListener('click', closeEditPopup);
+closeButton[1].addEventListener('click', closeAddPopup);
+formElement[0].addEventListener('submit', handleFormSubmit);
+addButton.addEventListener('click', openAddPopup);
+
+
 
 const createElement = (cards) => {
   const element = template.content.querySelector('.element').cloneNode(true);
