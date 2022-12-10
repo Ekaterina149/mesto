@@ -100,39 +100,60 @@ function handleAddFormSubmit (evt) {
  }
 
 
-
+//обработчик событий кнопки открытия окна редактирования профиля
 editButton.addEventListener('click', openEditPopup);
-closeButton[0].addEventListener('click', closeEditPopup);
-closeButton[1].addEventListener('click', closeAddPopup);
-formElement[0].addEventListener('submit', handleFormSubmit);
-formElement[1].addEventListener('submit', handleAddFormSubmit);
+//обработчик событий кнопки открытия окна добавления карточек
 addButton.addEventListener('click', openAddPopup);
+//обработчик событий кнопки закрытия окна редактирования профиля
+closeButton[0].addEventListener('click', closeEditPopup);
+//обработчик событий кнопки закрытия окна добавления карточек
+closeButton[1].addEventListener('click', closeAddPopup);
+//обработчик событий кнопки сохранить окна редактирования профиля
+formElement[0].addEventListener('submit', handleFormSubmit);
+//обработчик событий кнопки сохранить окна добавления карточек
+formElement[1].addEventListener('submit', handleAddFormSubmit);
 
 
 
 
 const createElement = (cards) => {
+  //клонируем шаблон из верстки
   const element = template.content.querySelector('.element').cloneNode(true);
+  //создаем в DOM объекты свойств картинки и текстового наполнения
+  //карточки, присваиваем им значения из заданного массива
+  // либо из ключей объекта, созданного на основе полей формы
   element.querySelector('.element__image').src = cards.link;
   element.querySelector('.element__image').alt = cards.name;
   element.querySelector('.element__text').textContent = cards.name;
+  //обработчик событий кнопки корзина
   element
     .querySelector(".element__recyclebin")
     .addEventListener("click", () => {
       element.remove()
-    })
+    });
+    //обработчик событий кнопки лайк запущен
+    element.querySelector('.element__heart').addEventListener(
+      "click", (evt) => {
+        const eventTarget = evt.target;
+        eventTarget.classList.toggle('element__heart_type_active');
+      });
+
  return element;
 }
+
+//функция добавления элемента массива initialCards на страницу в конец блока elements
 const renderElement = (cards) => {
   cardElements.append(createElement(cards));
 
 }
 
+//функция добавления элемента  на страницу в начало блока elements перед элементами массива initialCards
 const renderBtnAddElement = (cards) => {
   cardElements.prepend(createElement(cards));
 
 }
 
+//функция добавления в цикле элементов массива initialCards на страницу в конец блока elements
 initialCards.forEach((initcard) => {
   renderElement(initcard);
 });
