@@ -4,12 +4,14 @@ let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_job');
 let placeInput = document.querySelector('.popup__input_type_place');
 let linkInput = document.querySelector('.popup__input_type_link');
-
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
 let popup = document.querySelectorAll('.popup');
 let closeButton = document.querySelectorAll('.popup__close');
 let formElement = document.querySelectorAll('.popup__form');
+let popupImage = document.querySelector('.popup__image');
+let popupCapture = document.querySelector('.popup__caption');
+
 
 
 const cardElements = document.querySelector('.elements');
@@ -93,12 +95,20 @@ function handleAddFormSubmit (evt) {
    placeInput.value = '';
    linkInput.value = '';
 
-
  }
  function closeAddPopup() {
   closePopup(popup[1]);
  }
 
+ function openImagePopup() {
+  openPopup(popup[2]);
+
+
+ }
+
+ function closeImagePopup() {
+  closePopup(popup[2]);
+ }
 
 //обработчик событий кнопки открытия окна редактирования профиля
 editButton.addEventListener('click', openEditPopup);
@@ -108,6 +118,8 @@ addButton.addEventListener('click', openAddPopup);
 closeButton[0].addEventListener('click', closeEditPopup);
 //обработчик событий кнопки закрытия окна добавления карточек
 closeButton[1].addEventListener('click', closeAddPopup);
+//обработчик событий кнопки закрытия окна картинки
+closeButton[2].addEventListener('click', closeImagePopup);
 //обработчик событий кнопки сохранить окна редактирования профиля
 formElement[0].addEventListener('submit', handleFormSubmit);
 //обработчик событий кнопки сохранить окна добавления карточек
@@ -130,13 +142,21 @@ const createElement = (cards) => {
     .querySelector(".element__recyclebin")
     .addEventListener("click", () => {
       element.remove()
-    });
+  });
     //обработчик событий кнопки лайк запущен
-    element.querySelector('.element__heart').addEventListener(
-      "click", (evt) => {
-        const eventTarget = evt.target;
-        eventTarget.classList.toggle('element__heart_type_active');
-      });
+  element.querySelector('.element__heart').addEventListener(
+    "click", (evt) => {
+      const eventTarget = evt.target;
+      eventTarget.classList.toggle('element__heart_type_active');
+
+  });
+  element.querySelector('.element__image').addEventListener("click", () => {
+    openImagePopup();
+    popupImage.src = cards.link;
+    popupImage.alt = cards.name;
+    popupCapture.textContent = cards.name;
+
+  })
 
  return element;
 }

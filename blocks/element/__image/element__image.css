@@ -8,3 +8,7 @@
 
 
 }
+
+.element__image:hover {
+  cursor: pointer;
+}
