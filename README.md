@@ -5,7 +5,7 @@
 В проекте использованы технологии:
 * структура проекта БЭМ Nested
 * Язык сценариев JavaScript
-* методы querySelector, querySelectorAll
+* метод querySelector
 * методы add, remove, toggle для свойства classList
 * управление содержимым свойством .textContent
 * передача значений полей ввода формы свойством value
