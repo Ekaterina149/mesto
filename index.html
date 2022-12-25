@@ -39,12 +39,15 @@
       <div class="popup__container">
         <button class="popup__close opacity" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form" name="form" method="get">
+        <form class="popup__form" name="form" method="get" novalidate>
           <fieldset class="popup__fieldset" id="fieldsetname">
             <input class="popup__input popup__input_type_name" type="text" id="NameInput" name="NameInput"
-              placeholder="Имя">
+              placeholder="Имя" minlength="3" maxlength="40">
+            <span class="NameInput-error popup__input-error"></span>
             <input class="popup__input popup__input_type_job" type="text" id="JobInput" name="JobInput"
-              placeholder="Деятельность">
+              placeholder="Деятельность" minlength="2" maxlength="200">
+            <span class="JobInput-error popup__input-error"></span>
+
           </fieldset>
           <button class="popup__submit" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
@@ -54,12 +57,14 @@
       <div class="popup__container">
         <button class="popup__close opacity" type="button"></button>
         <h2 class="popup__header">Новое место</h2>
-        <form class="popup__form" name="form" method="get">
+        <form class="popup__form" name="form" method="get" novalidate>
           <fieldset class="popup__fieldset" id="fieldsetPlacename">
             <input class="popup__input popup__input_type_place" type="text" id="placeInput" name="placeInput"
-              placeholder="Название" required>
+              placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="placeInput-error popup__input-error">Название</span>
             <input class="popup__input popup__input_type_link" type="url" id="linkInput" name="linkInput"
               placeholder="Ссылка на картинку" required>
+            <span class="linkInput-error popup__input-error">Ссылка на картинку</span>
           </fieldset>
           <button class="popup__submit" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
@@ -85,6 +90,7 @@
     </div>
     </template>
   </div>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>

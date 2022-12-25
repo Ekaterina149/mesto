@@ -1,3 +1,12 @@
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  activeButtonClass: 'popup__submit_valid',
+  inactiveButtonClass: 'popup__submit_invalid',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error'
+};
 const userName = document.querySelector(".profile__header");
 const userJob = document.querySelector(".profile__text");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -50,6 +59,8 @@ function handleAddFormSubmit(evt) {
 //функция открытия окна редактирования профиля
 function openEditPopup() {
   openPopup(popupEdit);
+  hideInputError(formEditElement, nameInput, validationConfig);
+  hideInputError(formEditElement, JobInput, validationConfig);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
 }
@@ -60,6 +71,8 @@ function closeEditPopup() {
 //функция открытия окна добавления карточки
 function openAddPopup() {
   openPopup(popupAdd);
+  hideInputError(formAddElement, placeInput, validationConfig);
+  hideInputError(formAddElement, linkInput, validationConfig);
   placeInput.value = "";
   linkInput.value = "";
 }
@@ -140,3 +153,5 @@ const renderCard = (card) => {
 initialCards.forEach((initcard) => {
   renderInitialCard(initcard);
 });
+//функция валидации формы
+enableValidation(validationConfig);
