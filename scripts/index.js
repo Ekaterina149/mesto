@@ -43,6 +43,7 @@ function closePopupOnEscape(evt) {
 // функция закрытия всплывающего окна
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupOnEscape);
 }
 // функция сохранения изменений пользователя в окне редактирования данных профиля
 function handleFormEditSubmit(evt) {
@@ -69,10 +70,9 @@ function openEditPopup() {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-    disableSubmButton(popupEdit, validationConfig);
-    console.log("rere");
-
-
+  hideInputError(formEditElement, nameInput, validationConfig);
+  hideInputError(formEditElement, jobInput, validationConfig);
+  anableSubmButton(popupEdit, validationConfig);
 
 }
 //функция закрытия окна редактирования профиля
