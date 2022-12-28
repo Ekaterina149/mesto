@@ -30,8 +30,16 @@ const template = document.querySelector("#element");
 
 // функция открытия всплывающего окна
 function openPopup(popup) {
+  document.addEventListener("keydown", closePopupOnEscape);
   popup.classList.add("popup_opened");
 }
+function closePopupOnEscape(evt) {
+  const popup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
+}
+
 // функция закрытия всплывающего окна
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -59,37 +67,46 @@ function handleAddFormSubmit(evt) {
 //функция открытия окна редактирования профиля
 function openEditPopup() {
   openPopup(popupEdit);
-  hideInputError(formEditElement, nameInput, validationConfig);
-  hideInputError(formEditElement, JobInput, validationConfig);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+    disableSubmButton(popupEdit, validationConfig);
+    console.log("rere");
+
+
+
 }
 //функция закрытия окна редактирования профиля
 function closeEditPopup() {
   closePopup(popupEdit);
+
+
 }
 //функция открытия окна добавления карточки
 function openAddPopup() {
   openPopup(popupAdd);
-  hideInputError(formAddElement, placeInput, validationConfig);
-  hideInputError(formAddElement, linkInput, validationConfig);
+  //hideInputError(formAddElement, placeInput, validationConfig);
+  //hideInputError(formAddElement, linkInput, validationConfig);
   placeInput.value = "";
   linkInput.value = "";
+  //disableSubmButton(popupAdd, validationConfig);
 }
 
 //функция закрытия окна добавления карточки
 function closeAddPopup() {
   closePopup(popupAdd);
+ // closePopupOnEscape(evt, popupAdd);
 }
 
 //функция открытия окна картинки
 function openImagePopup() {
   openPopup(popupPic);
+
 }
 
-//функция закрытия окна добавления карточкиonClose
+//функция закрытия окна добавления карточки
 function closeImagePopup() {
   closePopup(popupPic);
+
 }
 //обработчик событий кнопки открытия окна редактирования профиля
 buttonEdit.addEventListener("click", openEditPopup);
@@ -99,12 +116,32 @@ buttonAdd.addEventListener("click", openAddPopup);
 buttonEditClose.addEventListener("click", closeEditPopup);
 //обработчик событий кнопки закрытия окна добавления карточек
 buttonAddClose.addEventListener("click", closeAddPopup);
-//обработчик событий кнопки закрытия окна картинкиcards
+//обработчик событий кнопки закрытия окна картинки cards
 buttonPicClose.addEventListener("click", closeImagePopup);
 //обработчик событий кнопки сохранить окна редактирования профиля
 formEditElement.addEventListener("submit", handleFormEditSubmit);
 //обработчик событий кнопки сохранить окна добавления карточек
 formAddElement.addEventListener("submit", handleAddFormSubmit);
+//обработчик событий при клике на оверлей окна редактирования профиля
+popupEdit.addEventListener("click", (evt) =>{
+  if (evt.target === popupEdit) {
+    closeEditPopup();
+  }
+});
+popupAdd.addEventListener("click", (evt) =>{
+  if (evt.target === popupAdd) {
+    closeAddPopup();
+  }
+});
+//обработчик событий при клике на оверлей окна добавления карточек
+popupPic.addEventListener("click", (evt) =>{
+  if (evt.target === popupPic) {
+    closeImagePopup();
+  }
+});
+
+
+
 
 //функция создание DOM элемента c использованием template-шаблона
 const createElement = (card) => {
