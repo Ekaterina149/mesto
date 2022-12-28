@@ -14,11 +14,6 @@
   outline: none;
 }
 
-/* .popup__input:first-child {
-  padding-bottom: 8px;
-  margin-top: 0;
-} */
-
 
 
 .popup__input::-webkit-input-placeholder {
@@ -26,7 +21,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color:  #C4C4C4;;
+  color:#C4C4C4;
   padding-bottom: 13px;
   opacity: 1;
 }
@@ -36,7 +31,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color:  #C4C4C4;;
+  color:#C4C4C4;
   padding-bottom: 13px;
   opacity: 1;
 }
@@ -46,7 +41,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color:  #C4C4C4;;
+  color: #C4C4C4;
   padding-bottom: 13px;
   opacity: 1;
 }
@@ -56,7 +51,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color:  #C4C4C4;;
+  color: #C4C4C4;
   padding-bottom: 13px;
   opacity: 1;
 }
