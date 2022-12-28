@@ -33,6 +33,7 @@ function openPopup(popup) {
   document.addEventListener("keydown", closePopupOnEscape);
   popup.classList.add("popup_opened");
 }
+// функция закрытия всплывающего при нажатии клавиши Escape
 function closePopupOnEscape(evt) {
   const popup = document.querySelector(".popup_opened");
   if (evt.key === "Escape") {
@@ -70,8 +71,10 @@ function openEditPopup() {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
   hideInputError(formEditElement, nameInput, validationConfig);
   hideInputError(formEditElement, jobInput, validationConfig);
+  //активируем кнопку Submit при открытии попапа
   anableSubmButton(popupEdit, validationConfig);
 
 }
@@ -84,11 +87,12 @@ function closeEditPopup() {
 //функция открытия окна добавления карточки
 function openAddPopup() {
   openPopup(popupAdd);
-  //hideInputError(formAddElement, placeInput, validationConfig);
-  //hideInputError(formAddElement, linkInput, validationConfig);
+  //прячем ошибки валидации, возникшие при предыдущем открытии попапа
+  hideInputError(formAddElement, placeInput, validationConfig);
+  hideInputError(formAddElement, linkInput, validationConfig);
   placeInput.value = "";
   linkInput.value = "";
-  //disableSubmButton(popupAdd, validationConfig);
+
 }
 
 //функция закрытия окна добавления карточки
@@ -103,7 +107,7 @@ function openImagePopup() {
 
 }
 
-//функция закрытия окна добавления карточки
+//функция закрытия окна картинки
 function closeImagePopup() {
   closePopup(popupPic);
 
@@ -128,21 +132,18 @@ popupEdit.addEventListener("click", (evt) =>{
     closeEditPopup();
   }
 });
+//обработчик событий при клике на оверлей окна добавления карточек
 popupAdd.addEventListener("click", (evt) =>{
   if (evt.target === popupAdd) {
     closeAddPopup();
   }
 });
-//обработчик событий при клике на оверлей окна добавления карточек
+//обработчик событий при клике на оверлей окна картинки
 popupPic.addEventListener("click", (evt) =>{
   if (evt.target === popupPic) {
     closeImagePopup();
   }
 });
-
-
-
-
 //функция создание DOM элемента c использованием template-шаблона
 const createElement = (card) => {
   //клонируем шаблон из верстки
