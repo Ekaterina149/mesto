@@ -1,11 +1,11 @@
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  activeButtonClass: 'popup__submit_valid',
-  inactiveButtonClass: 'popup__submit_invalid',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error'
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  activeButtonClass: "popup__submit_valid",
+  inactiveButtonClass: "popup__submit_invalid",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error",
 };
 const userName = document.querySelector(".profile__header");
 const userJob = document.querySelector(".profile__text");
@@ -30,13 +30,13 @@ const template = document.querySelector("#element");
 
 // функция открытия всплывающего окна
 function openPopup(popup) {
-  document.addEventListener("keydown", closePopupOnEscape);
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupOnEscape);
 }
 // функция закрытия всплывающего при нажатии клавиши Escape
 function closePopupOnEscape(evt) {
-  const popup = document.querySelector(".popup_opened");
   if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
     closePopup(popup);
   }
 }
@@ -71,18 +71,15 @@ function openEditPopup() {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
+  //прячем ошибки валидации, возникшие при предыдущем открытии попапа
   hideInputError(formEditElement, nameInput, validationConfig);
   hideInputError(formEditElement, jobInput, validationConfig);
   //активируем кнопку Submit при открытии попапа
-  anableSubmButton(popupEdit, validationConfig);
-
+  anableSubmitButton(popupEdit, validationConfig);
 }
 //функция закрытия окна редактирования профиля
 function closeEditPopup() {
   closePopup(popupEdit);
-
-
 }
 //функция открытия окна добавления карточки
 function openAddPopup() {
@@ -90,27 +87,23 @@ function openAddPopup() {
   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
   hideInputError(formAddElement, placeInput, validationConfig);
   hideInputError(formAddElement, linkInput, validationConfig);
-  placeInput.value = "";
-  linkInput.value = "";
-
+  formAddElement.reset();
+  disableSubmitButton(popupAdd, validationConfig);
 }
 
 //функция закрытия окна добавления карточки
 function closeAddPopup() {
   closePopup(popupAdd);
- // closePopupOnEscape(evt, popupAdd);
 }
 
 //функция открытия окна картинки
 function openImagePopup() {
   openPopup(popupPic);
-
 }
 
 //функция закрытия окна картинки
 function closeImagePopup() {
   closePopup(popupPic);
-
 }
 //обработчик событий кнопки открытия окна редактирования профиля
 buttonEdit.addEventListener("click", openEditPopup);
@@ -127,19 +120,19 @@ formEditElement.addEventListener("submit", handleFormEditSubmit);
 //обработчик событий кнопки сохранить окна добавления карточек
 formAddElement.addEventListener("submit", handleAddFormSubmit);
 //обработчик событий при клике на оверлей окна редактирования профиля
-popupEdit.addEventListener("click", (evt) =>{
+popupEdit.addEventListener("click", (evt) => {
   if (evt.target === popupEdit) {
     closeEditPopup();
   }
 });
 //обработчик событий при клике на оверлей окна добавления карточек
-popupAdd.addEventListener("click", (evt) =>{
+popupAdd.addEventListener("click", (evt) => {
   if (evt.target === popupAdd) {
     closeAddPopup();
   }
 });
 //обработчик событий при клике на оверлей окна картинки
-popupPic.addEventListener("click", (evt) =>{
+popupPic.addEventListener("click", (evt) => {
   if (evt.target === popupPic) {
     closeImagePopup();
   }

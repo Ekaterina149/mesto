@@ -44,13 +44,13 @@
         <form class="popup__form" name="form" method="get" novalidate>
           <fieldset class="popup__fieldset" id="fieldsetname">
             <label class="popup__label">
-             <input class="popup__input popup__input_type_name" type="text" id="NameInput" name="NameInput"
-              placeholder="Имя" minlength="3" maxlength="40" required>
+              <input class="popup__input popup__input_type_name" type="text" id="NameInput" name="NameInput"
+                placeholder="Имя" minlength="3" maxlength="40" pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$" required>
               <span class="NameInput-error popup__input-error"></span>
             </label>
             <label class="popup__label">
               <input class="popup__input popup__input_type_job" type="text" id="JobInput" name="JobInput"
-                placeholder="Деятельность" minlength="2" maxlength="200" required>
+                placeholder="Деятельность" minlength="2" maxlength="200" pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$" required>
               <span class="JobInput-error popup__input-error"></span>
             </label>
 
@@ -67,7 +67,7 @@
           <fieldset class="popup__fieldset" id="fieldsetPlacename">
             <label class="popup__label">
               <input class="popup__input popup__input_type_place" type="text" id="placeInput" name="placeInput"
-                placeholder="Название" minlength="2" maxlength="30" required>
+                placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$" required>
               <span class="placeInput-error popup__input-error"></span>
             </label>
             <label class="popup__label">
