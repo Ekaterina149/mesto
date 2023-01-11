@@ -22,7 +22,17 @@ function checkInputValidity(formElement, inputElement, config) {
   if (inputElement.validity.valid) {
     hideInputError(formElement, inputElement, config);
   } else {
+    if((inputElement.validity.patternMismatch)){
+      inputElement.setCustomValidity('Вводите буквы русского или латинского алфавита, не используйте символы %,:,&,?,*,+,"');
+
+    }
+    else if(!inputElement.validity.patternMismatch)  {
+      inputElement.setCustomValidity('');
+
+    }
+
     showInputError(formElement, inputElement, config);
+
   }
 }
 //функция находит и возвращает невалидный инпут в массиве из элементов <input>
@@ -51,12 +61,19 @@ function setEventListeners(formElement, config) {
   );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
-
   inputList.forEach((inputElement) => {
+    inputElement.addEventListener("keyup", (evt) => {
+      if(evt.key === "Backspace") {
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
+
+      };
+    });0.
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config);
     });
+
   });
 }
 //функция создает обработчики событий для всех форм на странице
