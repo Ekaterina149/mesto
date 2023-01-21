@@ -1,12 +1,6 @@
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit",
-  activeButtonClass: "popup__submit_valid",
-  inactiveButtonClass: "popup__submit_invalid",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error",
-};
+import { Card } from "./card.js";
+import { initialCards, validationConfig } from "./constants.js";
+
 const userName = document.querySelector(".profile__header");
 const userJob = document.querySelector(".profile__text");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -96,11 +90,15 @@ function closeAddPopup() {
   closePopup(popupAdd);
 }
 
-//функция открытия окна картинки
-function openImagePopup() {
+//функция открытия окна картинки переписать передавая туда параметры card.link  и card.name
+function openImagePopup(card) {
   openPopup(popupPic);
+  popupImage.src = card.link;
+ // popupImage.alt = card.name;
+  popupCapture.textContent = card.name;
 }
-
+//const card = new Cards(initcard, "element",openImagePopup)
+//const openImgPopup = openImagePopup;
 //функция закрытия окна картинки
 function closeImagePopup() {
   closePopup(popupPic);
@@ -139,7 +137,7 @@ popupPic.addEventListener("click", (evt) => {
 });
 //функция создание DOM элемента c использованием template-шаблона
 const createElement = (card) => {
-  //клонируем шаблон из верстки
+  /*  //клонируем шаблон из верстки
   const element = template.content.querySelector(".element").cloneNode(true);
   //создаем в DOM объекты свойств картинки и текстового наполнения
   //карточки, присваиваем им значения из заданного массива
@@ -165,8 +163,12 @@ const createElement = (card) => {
     popupImage.src = card.link;
     popupImage.alt = card.name;
     popupCapture.textContent = card.name;
-  });
-
+  }); */
+  const element = new Card(
+    card,
+    ".element-template",
+    openImagePopup
+  ).createCard();
   return element;
 };
 
