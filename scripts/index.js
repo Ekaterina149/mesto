@@ -1,6 +1,6 @@
 import { Card } from "./card.js";
 import { initialCards, validationConfig } from "./constants.js";
-
+import { FormValidator } from "./FormValidator.js";
 const userName = document.querySelector(".profile__header");
 const userJob = document.querySelector(".profile__text");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -11,6 +11,11 @@ const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAdd = document.querySelector(".profile__add-button");
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupAdd = document.querySelector(".popup_type_add");
+//config
+const popupEditValidation = new FormValidator(validationConfig, popupEdit);
+popupEditValidation.enableValidation();
+const popupAddValidation = new FormValidator(validationConfig, popupAdd);
+popupAddValidation.enableValidation();
 const popupPic = document.querySelector(".popup_theme_dark");
 const buttonEditClose = popupEdit.querySelector(".popup__close");
 const buttonAddClose = popupAdd.querySelector(".popup__close");
@@ -65,11 +70,12 @@ function openEditPopup() {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+  popupEditValidation.disableSubmitButton();
   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
-  hideInputError(formEditElement, nameInput, validationConfig);
-  hideInputError(formEditElement, jobInput, validationConfig);
+  //hideInputError(formEditElement, nameInput, validationConfig);
+  //hideInputError(formEditElement, jobInput, validationConfig);
   //активируем кнопку Submit при открытии попапа
-  anableSubmitButton(popupEdit, validationConfig);
+  //anableSubmitButton(popupEdit, validationConfig);
 }
 //функция закрытия окна редактирования профиля
 function closeEditPopup() {
@@ -79,10 +85,11 @@ function closeEditPopup() {
 function openAddPopup() {
   openPopup(popupAdd);
   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
-  hideInputError(formAddElement, placeInput, validationConfig);
-  hideInputError(formAddElement, linkInput, validationConfig);
+  //hideInputError(formAddElement, placeInput, validationConfig);
+  //hideInputError(formAddElement, linkInput, validationConfig);
   formAddElement.reset();
-  disableSubmitButton(popupAdd, validationConfig);
+  //disableSubmitButton(popupAdd, validationConfig);
+  popupAddValidation.disableSubmitButton();
 }
 
 //функция закрытия окна добавления карточки
@@ -187,4 +194,4 @@ initialCards.forEach((initcard) => {
   renderInitialCard(initcard);
 });
 //функция валидации формы
-enableValidation(validationConfig);
+// enableValidation(validationConfig);
