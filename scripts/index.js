@@ -1,4 +1,4 @@
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { initialCards, validationConfig } from "./constants.js";
 import { FormValidator } from "./FormValidator.js";
 const userName = document.querySelector(".profile__header");
