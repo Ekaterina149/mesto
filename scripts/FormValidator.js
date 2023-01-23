@@ -1,5 +1,5 @@
 class FormValidator {
- 
+
   constructor(restconfig, formElement) {
     this._restconfig = restconfig;
     this._formElement = formElement;
@@ -10,9 +10,11 @@ class FormValidator {
       this._formElement.querySelectorAll(restconfig.inputSelector)
     );
   }
+  //запустить валидацию
   enableValidation = () => {
     this._setEventListeners();
   };
+  //показать ошибку валидации
   _showInputError = (inputElement) => {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.id}-error`
@@ -21,7 +23,8 @@ class FormValidator {
     errorElement.textContent = inputElement.validationMessage;
     inputElement.classList.add(this._restconfig.inputErrorClass);
   };
-  _hideInputError = (inputElement) => {
+  //скрыть ошибку валидации
+  hideInputError = (inputElement) => {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.id}-error`
     );
@@ -29,9 +32,10 @@ class FormValidator {
     errorElement.textContent = "";
     inputElement.classList.remove(this._restconfig.inputErrorClass);
   };
+  //проверка на валидность инпутов
   _checkInputValidity = (inputElement) => {
     if (inputElement.validity.valid) {
-      this._hideInputError(inputElement);
+      this.hideInputError(inputElement);
     } else {
       if (inputElement.validity.patternMismatch) {
         inputElement.setCustomValidity(
@@ -44,21 +48,23 @@ class FormValidator {
       this._showInputError(inputElement);
     }
   };
+  //находим невалидный инпут в массиве инпутов
   _hasInvalidInput() {
-    console.log(this);
     return this._inputlist.some((inputElement) => !inputElement.validity.valid);
-  }
+  };
+  //деактивация кнопки сабмит
   disableSubmitButton = () => {
     this._buttonElement.classList.remove(this._restconfig.activeButtonClass);
     this._buttonElement.classList.add(this._restconfig.inactiveButtonClass);
     this._buttonElement.disabled = true;
   };
+  //активация кнопки сабмит
   enableSubmitButton = () => {
     this._buttonElement.classList.add(this._restconfig.activeButtonClass);
     this._buttonElement.classList.remove(this._restconfig.inactiveButtonClass);
     this._buttonElement.disabled = false;
   };
-
+//переключение состояния кнопки сабмит
   _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this.disableSubmitButton();
@@ -66,6 +72,7 @@ class FormValidator {
       this.enableSubmitButton();
     }
   };
+  //установка слушателей событий
   _setEventListeners = () => {
     this._toggleButtonState(this._inputlist, this._buttonElement);
     this._inputlist.forEach((inputElement) => {

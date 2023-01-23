@@ -11,10 +11,12 @@ const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAdd = document.querySelector(".profile__add-button");
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupAdd = document.querySelector(".popup_type_add");
-//config
+
 const popupEditValidation = new FormValidator(validationConfig, popupEdit);
+//валидируем  форму попапа редактирования данных профиля
 popupEditValidation.enableValidation();
 const popupAddValidation = new FormValidator(validationConfig, popupAdd);
+//валидируем форму попапа добавления карточки
 popupAddValidation.enableValidation();
 const popupPic = document.querySelector(".popup_theme_dark");
 const buttonEditClose = popupEdit.querySelector(".popup__close");
@@ -25,7 +27,7 @@ const formAddElement = popupAdd.querySelector(".popup__form");
 const popupImage = document.querySelector(".popup__image");
 const popupCapture = document.querySelector(".popup__caption");
 const cardElement = document.querySelector(".elements");
-const template = document.querySelector("#element");
+
 
 // функция открытия всплывающего окна
 function openPopup(popup) {
@@ -70,12 +72,11 @@ function openEditPopup() {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  popupEditValidation.disableSubmitButton();
   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
-  //hideInputError(formEditElement, nameInput, validationConfig);
-  //hideInputError(formEditElement, jobInput, validationConfig);
-  //активируем кнопку Submit при открытии попапа
-  //anableSubmitButton(popupEdit, validationConfig);
+  popupEditValidation.hideInputError(nameInput);
+  popupEditValidation.hideInputError(jobInput);
+  popupEditValidation.enableSubmitButton();
+
 }
 //функция закрытия окна редактирования профиля
 function closeEditPopup() {
@@ -85,8 +86,8 @@ function closeEditPopup() {
 function openAddPopup() {
   openPopup(popupAdd);
   //прячем ошибки валидации, возникшие при предыдущем открытии попапа
-  //hideInputError(formAddElement, placeInput, validationConfig);
-  //hideInputError(formAddElement, linkInput, validationConfig);
+  popupAddValidation. hideInputError(placeInput);
+  popupAddValidation. hideInputError(linkInput);
   formAddElement.reset();
   //disableSubmitButton(popupAdd, validationConfig);
   popupAddValidation.disableSubmitButton();
@@ -101,11 +102,9 @@ function closeAddPopup() {
 function openImagePopup(card) {
   openPopup(popupPic);
   popupImage.src = card.link;
- // popupImage.alt = card.name;
+  popupImage.alt = card.name;
   popupCapture.textContent = card.name;
 }
-//const card = new Cards(initcard, "element",openImagePopup)
-//const openImgPopup = openImagePopup;
 //функция закрытия окна картинки
 function closeImagePopup() {
   closePopup(popupPic);
@@ -144,33 +143,6 @@ popupPic.addEventListener("click", (evt) => {
 });
 //функция создание DOM элемента c использованием template-шаблона
 const createElement = (card) => {
-  /*  //клонируем шаблон из верстки
-  const element = template.content.querySelector(".element").cloneNode(true);
-  //создаем в DOM объекты свойств картинки и текстового наполнения
-  //карточки, присваиваем им значения из заданного массива
-  // либо из ключей объекта, созданного на основе полей формы
-  const elementImage = element.querySelector(".element__image");
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  element.querySelector(".element__text").textContent = card.name;
-  //обработчик событий кнопки корзина
-  element
-    .querySelector(".element__recyclebin")
-    .addEventListener("click", () => {
-      element.remove();
-    });
-  //обработчик событий кнопки лайк запущен
-  element.querySelector(".element__heart").addEventListener("click", (evt) => {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle("element__heart_type_active");
-  });
-  //обработчик события клика по картинке карточки
-  elementImage.addEventListener("click", () => {
-    openImagePopup();
-    popupImage.src = card.link;
-    popupImage.alt = card.name;
-    popupCapture.textContent = card.name;
-  }); */
   const element = new Card(
     card,
     ".element-template",
@@ -193,5 +165,4 @@ const renderCard = (card) => {
 initialCards.forEach((initcard) => {
   renderInitialCard(initcard);
 });
-//функция валидации формы
-// enableValidation(validationConfig);
+

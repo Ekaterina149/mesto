@@ -5,43 +5,41 @@ class Card {
     this._templateSelector = templateSelector;
     this._openImgPopup = openImgPopup;
   }
-
+//создание карточки
   createCard = () => {
     this._card = document
       .querySelector(this._templateSelector)
       .content.cloneNode(true);
-    console.log(this._card);
     this._title = this._card.querySelector(".element__text");
     this._image = this._card.querySelector(".element__image");
     this._heart = this._card.querySelector(".element__heart");
     this._resyclebin = this._card.querySelector(".element__recyclebin");
-    this._fillCard(); //заполнение карточки
+    this._fillCard();
     this._setEventListeners();
 
     return this._card;
   };
-
+//заполнение карточки
   _fillCard = () => {
     this._title.textContent = this._name;
     this._image.src = this._link;
     this._image.alt = this._name;
-    //здесь я закончу заполнение карточки;
+
   };
+  //переключение класса видимости у карточки
   _toggleHeart = () => {
     this._heart.classList.toggle("element__heart_type_active");
   };
+  //удаление карточки
   _deleteCard = () => {
     this._resyclebin.closest(".element").remove();
   };
+  //установка слушателей событий
   _setEventListeners = () => {
     this._heart.addEventListener("click", () =>{ this._toggleHeart()});
     this._resyclebin.addEventListener("click", () => this._deleteCard());
     this._image.addEventListener("click", () => {
-      const img = {
-        name: this._name,
-        link: this._link,
-      };
-      this._openImgPopup(img);}
+    this._openImgPopup({name: this._name, link: this._link});}
     );
   };
 }
