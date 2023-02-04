@@ -10,6 +10,7 @@ class Card {
     this._card = document
       .querySelector(this._templateSelector)
       .content.cloneNode(true);
+    this._element = this._card.querySelector(".element");
     this._title = this._card.querySelector(".element__text");
     this._image = this._card.querySelector(".element__image");
     this._heart = this._card.querySelector(".element__heart");
@@ -32,7 +33,7 @@ class Card {
   };
   //удаление карточки
   _deleteCard = () => {
-    this._resyclebin.closest(".element").remove();
+    this._element.remove();
   };
   //установка слушателей событий
   _setEventListeners = () => {

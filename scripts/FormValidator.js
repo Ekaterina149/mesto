@@ -88,6 +88,12 @@ class FormValidator {
       });
     });
   };
+  clearErrors(){
+    this._inputlist.forEach((input) =>{
+      this.hideInputError(input);
+    });
+    this._toggleButtonState();
+  }
 }
 
 export { FormValidator };
