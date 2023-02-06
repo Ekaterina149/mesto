@@ -13,8 +13,8 @@ class UserInfo {
   }
   SetUserInfo = ({NameInput, JobInput}) => {
 
-this._userName = NameInput;
-this._userJob = JobInput;
+this._userName.textContent = NameInput;
+this._userJob.textContent = JobInput;
 
   }
 }

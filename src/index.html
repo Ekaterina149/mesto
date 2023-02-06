@@ -6,20 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Юркова Екатерина">
-  <link rel="stylesheet" href="./pages/index.css">
-  <link rel="shortcut icon" href="./images/valenky.ico">
+
+  <link rel="shortcut icon" href="<%=require('./images/valenky.ico')%>">
   <title>Место</title>
 </head>
 
 <body class="root">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип сайта">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__box">
-          <img class="profile__avatar" src="./images/kusto.jpg" alt="Жак Ив Кусто">
+          <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Жак Ив Кусто">
           <div class="profile__info">
             <h1 class="profile__header">Жак-Ив Кусто</h1>
             <button class="profile__edit-button opacity" type="button" aria-label="Редактировать"></button>
@@ -100,9 +100,7 @@
       </div>
     </template>
   </div>
-  <!-- <script src="./scripts/validate.js"></script> -->
-  <!-- <script src="./scripts/cards.js"></script> -->
-  <script type="module" src="./scripts/index.js"></script>
+
 </body>
 
 </html>
