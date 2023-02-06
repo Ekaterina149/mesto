@@ -17,16 +17,19 @@ class Popup {
       this.close();
     }
   };
+  //метод устанавливает слушатель на нажатие клавиши Escape
   _handleEscClose = () => {
     document.addEventListener("keydown", (evt) => {
       this._closeOnEscape(evt);
     });
   };
+    //метод снимает слушатель на нажатие клавиши Escape
   _removehandleEscClose = () => {
     document.removeEventListener("keydown", (evt) => {
       this._closeOnEscape(evt);
     });
   };
+  //метод устанавливает слушатель событий на клик по овелею и на клик по крестику
   setEventListeners() {
     this._popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {

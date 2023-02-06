@@ -6,13 +6,17 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = HandleFormSubmit;
     this._inputs = Array.from(this._form.querySelectorAll('.popup__input'))
   }
+  //метод возвращает форму
   getForm() {
     return this._form;
   }
+  //метод закрывает форму и сбрасывает ее поля
   close() {
     super.close();
     this._form.reset();
   };
+  //метод получает объект со значениями инпутов из массива инпутов в виде
+  //{ input.name1: input.value1 input.name2: input.value2 input.name3: input.value3 ... }
   getInputValues = () => {
     this._inputvalues = new Object();
     this._inputs.forEach((input) => {
@@ -20,10 +24,11 @@ class PopupWithForm extends Popup {
     });
     return this._inputvalues;
   };
+  //метод заполняет данные инпутов значениями, полученными из метода getUserInfo() класса UserInfo
   setInputValues = (values) => {
     this._inputs.forEach((input) => { input.value = values[input.name] })
   }
-
+//метод устанавливает дополнительные слушатели событий на сабмит формы
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {

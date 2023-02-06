@@ -5,6 +5,8 @@ class PopupWithImage extends Popup {
     this._image = this._popup.querySelector('.popup__image');
     this._title = this._popup.querySelector('.popup__caption');
   }
+  //метод добавляет дополнительные функции приоткрытии попапа с картинкой
+  //берет данные из метода getInputValues() класса PopupWithForm
   open = (card) => {
 
     this._image.src = card.link;
