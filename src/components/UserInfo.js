@@ -9,17 +9,17 @@ class UserInfo {
   getUserInfo = () => {
 
     return {
-      NameInput: this._userName.textContent,
-      JobInput: this._userJob.textContent
+      nameInput: this._userName.textContent,
+      jobInput: this._userJob.textContent
     }
   }
   //метод заполняет текстовый контент элементов страницы
   //селекторы которых передаются в конструктор класса UserInfo данными
   //полученными из метода getInputValues() класса PopupWithForm
-  SetUserInfo = ({NameInput, JobInput}) => {
+  SetUserInfo = ({nameInput, jobInput}) => {
 
-this._userName.textContent = NameInput;
-this._userJob.textContent = JobInput;
+this._userName.textContent = nameInput;
+this._userJob.textContent = jobInput;
 
   }
 }

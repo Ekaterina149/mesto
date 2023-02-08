@@ -17,8 +17,8 @@ class PopupWithForm extends Popup {
   };
   //метод получает объект со значениями инпутов из массива инпутов в виде
   //{ input.name1: input.value1 input.name2: input.value2 input.name3: input.value3 ... }
-  getInputValues = () => {
-    this._inputvalues = new Object();
+  _getInputValues = () => {
+    this._inputvalues = {};
     this._inputs.forEach((input) => {
     this._inputvalues[input.name] = input.value;
     });
@@ -33,7 +33,7 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this.getInputValues());
+      this._handleFormSubmit(this._getInputValues());
     });
   };
 

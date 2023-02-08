@@ -34,4 +34,8 @@ const validationConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error",
 };
-export { initialCards, validationConfig };
+const buttonEdit = document.querySelector(".profile__edit-button");
+const buttonAdd = document.querySelector(".profile__add-button");
+const popupEdit = document.querySelector(".popup_type_edit");
+const popupAdd = document.querySelector(".popup_type_add");
+export { initialCards, validationConfig, buttonEdit, buttonAdd, popupEdit, popupAdd};

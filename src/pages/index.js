@@ -1,15 +1,11 @@
 import "../pages/index.css";
 import { Card } from "../components/Card.js";
-import { initialCards, validationConfig } from "../utils/constants.js";
+import { initialCards, validationConfig, buttonEdit, buttonAdd, popupEdit, popupAdd} from "../utils/constants.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-const buttonEdit = document.querySelector(".profile__edit-button");
-const buttonAdd = document.querySelector(".profile__add-button");
-const popupEdit = document.querySelector(".popup_type_edit");
-const popupAdd = document.querySelector(".popup_type_add");
 const popupAddValidation = new FormValidator(validationConfig, popupAdd);
 const popupEditValidation = new FormValidator(validationConfig, popupEdit);
 //переменная класса для попапа редактирования профиля

@@ -34,6 +34,7 @@ class Card {
   //удаление карточки
   _deleteCard = () => {
     this._element.remove();
+    this._element = null;
   };
   //установка слушателей событий
   _setEventListeners = () => {

@@ -19,15 +19,13 @@ class Popup {
   };
   //метод устанавливает слушатель на нажатие клавиши Escape
   _handleEscClose = () => {
-    document.addEventListener("keydown", (evt) => {
-      this._closeOnEscape(evt);
-    });
+    document.addEventListener("keydown",
+      this._closeOnEscape);
   };
     //метод снимает слушатель на нажатие клавиши Escape
   _removehandleEscClose = () => {
-    document.removeEventListener("keydown", (evt) => {
-      this._closeOnEscape(evt);
-    });
+    document.removeEventListener("keydown",
+      this._closeOnEscape);
   };
   //метод устанавливает слушатель событий на клик по овелею и на клик по крестику
   setEventListeners() {
