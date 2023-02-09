@@ -50,7 +50,7 @@ popupAddValidation.enableValidation();
 
 //функция вызываемая при сабмите окна редактирования профиля
 function handleFormEditSubmit(value) {
-  UserInf.SetUserInfo(value);
+  UserInf.setUserInfo(value);
   popupEditPr.close();
 }
 //функция создания карточки

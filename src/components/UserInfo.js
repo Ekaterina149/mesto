@@ -16,7 +16,7 @@ class UserInfo {
   //метод заполняет текстовый контент элементов страницы
   //селекторы которых передаются в конструктор класса UserInfo данными
   //полученными из метода getInputValues() класса PopupWithForm
-  SetUserInfo = ({nameInput, jobInput}) => {
+  setUserInfo = ({nameInput, jobInput}) => {
 
 this._userName.textContent = nameInput;
 this._userJob.textContent = jobInput;
