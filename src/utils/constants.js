@@ -25,6 +25,14 @@ const initialCards = [
   },
 ];
 
+const getDataheaders = {
+  authorization: "8db76d83-4308-4ed0-aecc-97a862cc1cdd",
+};
+const setDataheaders = {
+  authorization: "8db76d83-4308-4ed0-aecc-97a862cc1cdd",
+  "Content-Type": "application/json",
+};
+
 const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -38,4 +46,4 @@ const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAdd = document.querySelector(".profile__add-button");
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupAdd = document.querySelector(".popup_type_add");
-export { initialCards, validationConfig, buttonEdit, buttonAdd, popupEdit, popupAdd};
+export { initialCards, validationConfig, buttonEdit, buttonAdd, popupEdit, popupAdd, getDataheaders, setDataheaders};
