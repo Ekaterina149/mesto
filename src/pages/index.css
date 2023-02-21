@@ -9,6 +9,7 @@
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__box/profile__box.css');
 @import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__header/profile__header.css');
 @import url('../blocks/profile/__text/profile__text.css');

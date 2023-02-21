@@ -19,7 +19,8 @@
     <main class="content">
       <section class="profile">
         <div class="profile__box">
-          <img class="profile__avatar"  alt="Жак Ив Кусто">
+          <button class="profile__avatar-edit-button" type="button"><img class="profile__avatar"
+              alt="Жак Ив Кусто"></button>
           <div class="profile__info">
             <h1 class="profile__header">Жак-Ив Кусто</h1>
             <button class="profile__edit-button opacity" type="button" aria-label="Редактировать"></button>
@@ -87,6 +88,31 @@
         <figcaption class="popup__caption"></figcaption>
       </figure>
     </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button class="popup__close opacity" type="button"></button>
+        <h2 class="popup__header">Обновить аватар</h2>
+        <form class="popup__form" name="form" method="get" novalidate>
+          <fieldset class="popup__fieldset" id="fieldsetAvatar">
+            <label class="popup__label">
+              <input class="popup__input popup__input_type_link" type="url" id="linkInput" name="avatar"
+                placeholder="Ссылка на аватар" required>
+              <span class="linkInput-error popup__input-error"></span>
+            </label>
+          </fieldset>
+          <button class="popup__submit" type="submit" aria-label="Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_delete-card">
+      <div class="popup__container">
+        <button class="popup__close opacity" type="button"></button>
+        <h2 class="popup__header">Вы уверены?</h2>
+        <form class="popup__form" name="form" method="get" novalidate>
+          <button class="popup__submit popup__submit_valid" type="button" aria-label="Сохранить">Да</button>
+        </form>
+      </div>
+    </div>
     <template class="element-template" id="element">
       <div class="element">
         <img class="element__image">
@@ -97,9 +123,9 @@
             </button>
             <p class="element__likes-amount">0</p>
           </div>
-        <button class="element__recyclebin" type="button">
-        </button>
-      </div>
+          <button class="element__recyclebin" type="button">
+          </button>
+        </div>
     </template>
 
   </div>

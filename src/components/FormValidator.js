@@ -1,5 +1,4 @@
 class FormValidator {
-
   constructor(restconfig, formElement) {
     this._restconfig = restconfig;
     this._formElement = formElement;
@@ -51,7 +50,7 @@ class FormValidator {
   //находим невалидный инпут в массиве инпутов
   _hasInvalidInput() {
     return this._inputlist.some((inputElement) => !inputElement.validity.valid);
-  };
+  }
   //деактивация кнопки сабмит
   disableSubmitButton = () => {
     this._buttonElement.classList.remove(this._restconfig.activeButtonClass);
@@ -64,7 +63,7 @@ class FormValidator {
     this._buttonElement.classList.remove(this._restconfig.inactiveButtonClass);
     this._buttonElement.disabled = false;
   };
-//переключение состояния кнопки сабмит
+  //переключение состояния кнопки сабмит
   _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this.disableSubmitButton();
@@ -88,11 +87,21 @@ class FormValidator {
       });
     });
   };
-  clearErrors(){
-    this._inputlist.forEach((input) =>{
+  // метод очищает ошибки при открытии попапа
+  clearErrors() {
+    this._inputlist.forEach((input) => {
       this.hideInputError(input);
     });
     this._toggleButtonState();
+  }
+  //метод меняет текст кнопки в момент загрузки данных на сервер
+  changeButtonText(text) {
+    const defaultText = this._buttonElement.textContent;
+    this._buttonElement.textContent = text;
+    return defaultText;
+  }
+  _getDefaultButtonText() {
+    return this._buttonElement.textContent;
   }
 }
 
