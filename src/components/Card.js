@@ -3,8 +3,8 @@ class Card {
     data,
     templateSelector,
     openImgPopup,
-    HandleLike,
-    Handledeletecard,
+    handleLike,
+    handledeletecard,
     userId,
   }) {
     this._name = data.name;
@@ -14,8 +14,8 @@ class Card {
     this._templateSelector = templateSelector;
     this._openImgPopup = openImgPopup;
     this._likes = data.likes;
-    this._handleLike = HandleLike;
-    this._handledeletecard = Handledeletecard;
+    this._handleLike = handleLike;
+    this._handledeletecard = handledeletecard;
     this._userId = userId;
   }
   //создание карточки
@@ -63,7 +63,10 @@ class Card {
     // если карточка не лайкнута пользователем, убери закрашивание
     else this._heart.classList.remove("element__heart_type_active");
   };
-
+  deleteCard = () => {
+    this._targetCard.remove();
+    this._targetCard = null;
+  };
   //установка слушателей событий
   _setEventListeners = () => {
     //ставим слушатель событий на лайк
@@ -82,7 +85,8 @@ class Card {
     this._resyclebin.addEventListener("click", (evt) => {
       //метод которому присвоена функция Handledeletecard
       //вызывается с параметром this._cardId
-      this._handledeletecard(this._cardId, evt.target.closest(".element"));
+      this._targetCard = evt.target.closest(".element");
+      this._handledeletecard(this._cardId);
     });
     //слушатель на клик по картинке карточки
     this._image.addEventListener("click", () => {

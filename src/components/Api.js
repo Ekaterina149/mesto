@@ -1,5 +1,7 @@
 class Api {
-  constructor() {}
+  constructor(baseUrl) {
+    this._baseUrl = baseUrl;
+  }
   //Метод возвращает промисс из ответа сервера
   //в случае ошибки возвращает ее код и текст ошибки
   _checkRes(res) {
@@ -11,11 +13,13 @@ class Api {
   }
   //метод берет данные с сервера
   getData(href, headers) {
-    return fetch(href, { headers: headers }).then(this._checkRes);
+    return fetch(this._baseUrl + href, { headers: headers }).then(
+      this._checkRes
+    );
   }
   //метод записывает данные на сервер
   setData(href, method, headers, bodyObject) {
-    return fetch(href, {
+    return fetch(this._baseUrl + href, {
       method: method,
       headers: headers,
       body: bodyObject ? JSON.stringify(bodyObject) : "",

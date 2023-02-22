@@ -6,6 +6,8 @@ const setDataheaders = {
   "Content-Type": "application/json",
 };
 
+const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-60";
+
 const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -33,4 +35,5 @@ export {
   popupDelCard,
   getDataheaders,
   setDataheaders,
+  baseUrl,
 };

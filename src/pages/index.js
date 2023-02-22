@@ -11,6 +11,7 @@ import {
   popupDelCard,
   getDataheaders,
   setDataheaders,
+  baseUrl,
 } from "../utils/constants.js";
 import { Api } from "../components/Api.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -19,7 +20,9 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
+//const headers = "users/me/avatar";
 
+//console.log(baseUrl + headers);
 // создаем переменную, чтобы рендерить карточки
 const cardlist = new Section(
   {
@@ -33,13 +36,13 @@ const cardlist = new Section(
 //в контент элементов страницы
 //а также устанавливать в верстку данные, полученные с сервера
 
-const UserInf = new UserInfo({
+const userInf = new UserInfo({
   nameSelector: ".profile__header",
   jobSelector: ".profile__text",
   avatarSelector: ".profile__avatar",
 });
 //создаем экземпляр класса для работы с сервером
-const api = new Api();
+const api = new Api(baseUrl);
 //создаем экземпляры классов для валидации форм и работы скнопками
 const popupAddValidation = new FormValidator(validationConfig, popupAdd);
 const popupEditValidation = new FormValidator(validationConfig, popupEdit);
@@ -57,19 +60,14 @@ const popupPicPr = new PopupWithImage(".popup_theme_dark");
 const popupAddPr = new PopupWithForm(".popup_type_add", (value) => {
   //подготавливаем данные для отправки на сервер
   const { name, link } = value;
-  const owner = { _id: UserInf.getUserId() };
+  const owner = { _id: userInf.getUserId() };
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = ChangeLoadingview(popupAddValidation);
+  const defaultText = сhangeLoadingview(popupAddValidation);
   console.log(defaultText);
   //вызываем  метод отправки данных пользователя на сервер
   api
-    .setData(
-      "https://mesto.nomoreparties.co/v1/cohort-60/cards",
-      "POST",
-      setDataheaders,
-      { name, link, owner }
-    )
+    .setData("/cards", "POST", setDataheaders, { name, link, owner })
     .then((data) => {
       // добавляем карточку в верстку, используя данные ответа с сервера
       cardlist.addItem(createCard(data));
@@ -80,25 +78,20 @@ const popupAddPr = new PopupWithForm(".popup_type_add", (value) => {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      Restoreview(popupAddValidation, defaultText);
+      restoreview(popupAddValidation, defaultText);
     });
 });
 const popupAvatarPr = new PopupWithForm(".popup_type_avatar", (value) => {
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = ChangeLoadingview(popupAvatarValidation);
+  const defaultText = сhangeLoadingview(popupAvatarValidation);
   //отправляем на сервер данные с новой аватаркой
   api
-    .setData(
-      "https://mesto.nomoreparties.co/v1/cohort-60/users/me/avatar",
-      "PATCH",
-      setDataheaders,
-      value
-    )
+    .setData("/users/me/avatar", "PATCH", setDataheaders, value)
     .then((data) => {
       //заполняем данные на сайте тем,
       //что получили в ответе с сервера
-      UserInf.setUserInfo({
+      userInf.setUserInfo({
         nameInput: data.name,
         jobInput: data.about,
         avatar: data.avatar,
@@ -110,7 +103,7 @@ const popupAvatarPr = new PopupWithForm(".popup_type_avatar", (value) => {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      Restoreview(popupAvatarValidation, defaultText);
+      restoreview(popupAvatarValidation, defaultText);
     });
 });
 //создаем экземпляр класса PopupConfirm для попапа удаления карточки
@@ -120,18 +113,13 @@ const popupDelCardPr = new PopupWithConfirmation(".popup_type_delete-card");
 function handleFormEditSubmit(value) {
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = ChangeLoadingview(popupEditValidation);
+  const defaultText = сhangeLoadingview(popupEditValidation);
   const { nameInput: name, jobInput: about } = value;
   //отправляем данные пользователя на сервер
   api
-    .setData(
-      "https://mesto.nomoreparties.co/v1/cohort-60/users/me",
-      "PATCH",
-      setDataheaders,
-      { name, about }
-    )
+    .setData("/users/me", "PATCH", setDataheaders, { name, about })
     .then((data) => {
-      UserInf.setUserInfo({
+      userInf.setUserInfo({
         nameInput: data.name,
         jobInput: data.about,
         avatar: data.avatar,
@@ -143,24 +131,24 @@ function handleFormEditSubmit(value) {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      Restoreview(popupEditValidation, defaultText);
+      restoreview(popupEditValidation, defaultText);
     });
 }
 //функция создания карточки
 function createCard(item) {
-  return new Card({
+  const newcard = new Card({
     data: item,
     templateSelector: ".element-template",
     //коллбэк открытия попапа с картинкой
     openImgPopup: () => popupPicPr.open(item),
     //коллбэк лайка в качестве параметра handlresult выступает функция
     // см Card.js 84-87
-    HandleLike: (ease, cardId, handlresult) => {
+    handleLike: (ease, cardId, handlresult) => {
       //отправляем, либо удаляем данные с лайком если
       //пользователь лайкнул карточку в зависимости от состояния переменной ease
       api
         .setData(
-          `https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}/likes`,
+          `/cards/${cardId}/likes`,
           ease ? "PUT" : "DELETE",
           setDataheaders
         )
@@ -170,24 +158,19 @@ function createCard(item) {
         });
     },
     //коллбэк удаления карточки
-    Handledeletecard: (cardId, card) => {
+    handledeletecard: (cardId) => {
       //вызываем метод updateSubmitHandler, его параметр функция
 
       popupDelCardPr.updateSubmitHandler(() => {
         //меняем вид кнопки сабмита во время отправки данных на
         //сервер
-        const defaultText = ChangeLoadingview(popupDelCardValidation);
+        const defaultText = сhangeLoadingview(popupDelCardValidation);
 
         //записываем на сервер удаление карточки
         api
-          .setData(
-            `https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}`,
-            "DELETE",
-            setDataheaders
-          )
+          .setData(`/cards/${cardId}`, "DELETE", setDataheaders)
           .then(() => {
-            card.remove();
-            card = null;
+            newcard.deleteCard();
             popupDelCardPr.close();
           })
           .catch((err) => {
@@ -195,30 +178,31 @@ function createCard(item) {
           })
           .finally(() => {
             //возвращаем кнопке прежний вид
-            Restoreview(popupDelCardValidation, defaultText);
+            restoreview(popupDelCardValidation, defaultText);
           });
       });
       popupDelCardPr.open();
     },
     //передаем данные id пользователя в экземпляре класса Card
-    userId: UserInf.getUserId(),
-  }).createCard();
+    userId: userInf.getUserId(),
+  });
+  return newcard.createCard();
 }
 //функция изменения вида кнопки сабмита во время работы с сервером
-function ChangeLoadingview(popup) {
+function сhangeLoadingview(popup) {
   const defaultText = popup.changeButtonText("Сохранение...");
   popup.disableSubmitButton();
   return defaultText;
 }
 //функция  возвращения сабмита в прежнее состояние
-function Restoreview(popup, defaultText) {
+function restoreview(popup, defaultText) {
   popup.changeButtonText(defaultText);
   popup.enableSubmitButton();
 }
 
 //ставим обработчик событий на кнопку редактирования профиля
 buttonEdit.addEventListener("click", () => {
-  popupEditPr.setInputValues(UserInf.getUserInfo());
+  popupEditPr.setInputValues(userInf.getUserInfo());
   popupEditValidation.clearErrors();
   popupEditPr.open();
 });
@@ -240,17 +224,11 @@ popupAvatarPr.setEventListeners();
 popupDelCardPr.setEventListeners();
 //запрашиваем данные с карточками и информацией пользователя с сервера
 Promise.all([
-  api.getData(
-    "https://mesto.nomoreparties.co/v1/cohort-60/users/me",
-    getDataheaders
-  ),
-  api.getData(
-    "https://mesto.nomoreparties.co/v1/cohort-60/cards",
-    getDataheaders
-  ),
+  api.getData("/users/me", getDataheaders),
+  api.getData("/cards", getDataheaders),
 ])
   .then(([userData, cardData]) => {
-    UserInf.setUserInfo({
+    userInf.setUserInfo({
       nameInput: userData.name,
       jobInput: userData.about,
       avatar: userData.avatar,
