@@ -63,7 +63,7 @@ const popupAddPr = new PopupWithForm(".popup_type_add", (value) => {
   const owner = { _id: userInf.getUserId() };
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = сhangeLoadingview(popupAddValidation);
+  const defaultText = сhangeLoadingView(popupAddValidation);
   console.log(defaultText);
   //вызываем  метод отправки данных пользователя на сервер
   api
@@ -78,13 +78,13 @@ const popupAddPr = new PopupWithForm(".popup_type_add", (value) => {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      restoreview(popupAddValidation, defaultText);
+      restoreView(popupAddValidation, defaultText);
     });
 });
 const popupAvatarPr = new PopupWithForm(".popup_type_avatar", (value) => {
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = сhangeLoadingview(popupAvatarValidation);
+  const defaultText = сhangeLoadingView(popupAvatarValidation);
   //отправляем на сервер данные с новой аватаркой
   api
     .setData("/users/me/avatar", "PATCH", setDataheaders, value)
@@ -103,7 +103,7 @@ const popupAvatarPr = new PopupWithForm(".popup_type_avatar", (value) => {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      restoreview(popupAvatarValidation, defaultText);
+      restoreView(popupAvatarValidation, defaultText);
     });
 });
 //создаем экземпляр класса PopupConfirm для попапа удаления карточки
@@ -113,7 +113,7 @@ const popupDelCardPr = new PopupWithConfirmation(".popup_type_delete-card");
 function handleFormEditSubmit(value) {
   //меняем вид кнопки сабмита во время отправки данных на
   //сервер
-  const defaultText = сhangeLoadingview(popupEditValidation);
+  const defaultText = сhangeLoadingView(popupEditValidation);
   const { nameInput: name, jobInput: about } = value;
   //отправляем данные пользователя на сервер
   api
@@ -131,7 +131,7 @@ function handleFormEditSubmit(value) {
     })
     .finally(() => {
       //возвращаем кнопке сабмита прежний вид
-      restoreview(popupEditValidation, defaultText);
+      restoreView(popupEditValidation, defaultText);
     });
 }
 //функция создания карточки
@@ -158,13 +158,13 @@ function createCard(item) {
         });
     },
     //коллбэк удаления карточки
-    handledeletecard: (cardId) => {
+    handleDeleteCard: (cardId) => {
       //вызываем метод updateSubmitHandler, его параметр функция
 
       popupDelCardPr.updateSubmitHandler(() => {
         //меняем вид кнопки сабмита во время отправки данных на
         //сервер
-        const defaultText = сhangeLoadingview(popupDelCardValidation);
+        const defaultText = сhangeLoadingView(popupDelCardValidation);
 
         //записываем на сервер удаление карточки
         api
@@ -178,7 +178,7 @@ function createCard(item) {
           })
           .finally(() => {
             //возвращаем кнопке прежний вид
-            restoreview(popupDelCardValidation, defaultText);
+            restoreView(popupDelCardValidation, defaultText);
           });
       });
       popupDelCardPr.open();
@@ -189,13 +189,13 @@ function createCard(item) {
   return newcard.createCard();
 }
 //функция изменения вида кнопки сабмита во время работы с сервером
-function сhangeLoadingview(popup) {
+function сhangeLoadingView(popup) {
   const defaultText = popup.changeButtonText("Сохранение...");
   popup.disableSubmitButton();
   return defaultText;
 }
 //функция  возвращения сабмита в прежнее состояние
-function restoreview(popup, defaultText) {
+function restoreView(popup, defaultText) {
   popup.changeButtonText(defaultText);
   popup.enableSubmitButton();
 }

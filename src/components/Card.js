@@ -4,7 +4,7 @@ class Card {
     templateSelector,
     openImgPopup,
     handleLike,
-    handledeletecard,
+    handleDeleteCard,
     userId,
   }) {
     this._name = data.name;
@@ -15,7 +15,7 @@ class Card {
     this._openImgPopup = openImgPopup;
     this._likes = data.likes;
     this._handleLike = handleLike;
-    this._handledeletecard = handledeletecard;
+    this._handleDeleteCard = handleDeleteCard;
     this._userId = userId;
   }
   //создание карточки
@@ -86,7 +86,7 @@ class Card {
       //метод которому присвоена функция Handledeletecard
       //вызывается с параметром this._cardId
       this._targetCard = evt.target.closest(".element");
-      this._handledeletecard(this._cardId);
+      this._handleDeleteCard(this._cardId);
     });
     //слушатель на клик по картинке карточки
     this._image.addEventListener("click", () => {
