@@ -9,8 +9,8 @@ import {
   popupAdd,
   popupAvatar,
   popupDelCard,
-  getDataheaders,
-  setDataheaders,
+  getDataHeaders,
+  setDataHeaders,
   baseUrl,
 } from "../utils/constants.js";
 import { Api } from "../components/Api.js";
@@ -67,7 +67,7 @@ const popupAddPr = new PopupWithForm(".popup_type_add", (value) => {
   console.log(defaultText);
   //вызываем  метод отправки данных пользователя на сервер
   api
-    .setData("/cards", "POST", setDataheaders, { name, link, owner })
+    .setData("/cards", "POST", setDataHeaders, { name, link, owner })
     .then((data) => {
       // добавляем карточку в верстку, используя данные ответа с сервера
       cardlist.addItem(createCard(data));
@@ -87,7 +87,7 @@ const popupAvatarPr = new PopupWithForm(".popup_type_avatar", (value) => {
   const defaultText = сhangeLoadingView(popupAvatarValidation);
   //отправляем на сервер данные с новой аватаркой
   api
-    .setData("/users/me/avatar", "PATCH", setDataheaders, value)
+    .setData("/users/me/avatar", "PATCH", setDataHeaders, value)
     .then((data) => {
       //заполняем данные на сайте тем,
       //что получили в ответе с сервера
@@ -117,7 +117,7 @@ function handleFormEditSubmit(value) {
   const { nameInput: name, jobInput: about } = value;
   //отправляем данные пользователя на сервер
   api
-    .setData("/users/me", "PATCH", setDataheaders, { name, about })
+    .setData("/users/me", "PATCH", setDataHeaders, { name, about })
     .then((data) => {
       userInf.setUserInfo({
         nameInput: data.name,
@@ -141,18 +141,18 @@ function createCard(item) {
     templateSelector: ".element-template",
     //коллбэк открытия попапа с картинкой
     openImgPopup: () => popupPicPr.open(item),
-    //коллбэк лайка в качестве параметра handlresult выступает функция
+    //коллбэк лайка в качестве параметра handlResult выступает функция
     // см Card.js 84-87
-    handleLike: (ease, cardId, handlresult) => {
+    handleLike: (ease, cardId, handlResult) => {
       //отправляем, либо удаляем данные с лайком если
       //пользователь лайкнул карточку в зависимости от состояния переменной ease
       api
         .setData(
           `/cards/${cardId}/likes`,
           ease ? "PUT" : "DELETE",
-          setDataheaders
+          setDataHeaders
         )
-        .then((data) => handlresult(data)) //вызываем функцию handlresult с данными, полученными с сервера
+        .then((data) => handlResult(data)) //вызываем функцию handlResult с данными, полученными с сервера
         .catch((err) => {
           console.log(err);
         });
@@ -168,7 +168,7 @@ function createCard(item) {
 
         //записываем на сервер удаление карточки
         api
-          .setData(`/cards/${cardId}`, "DELETE", setDataheaders)
+          .setData(`/cards/${cardId}`, "DELETE", setDataHeaders)
           .then(() => {
             newcard.deleteCard();
             popupDelCardPr.close();
@@ -224,8 +224,8 @@ popupAvatarPr.setEventListeners();
 popupDelCardPr.setEventListeners();
 //запрашиваем данные с карточками и информацией пользователя с сервера
 Promise.all([
-  api.getData("/users/me", getDataheaders),
-  api.getData("/cards", getDataheaders),
+  api.getData("/users/me", getDataHeaders),
+  api.getData("/cards", getDataHeaders),
 ])
   .then(([userData, cardData]) => {
     userInf.setUserInfo({
